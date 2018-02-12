@@ -18,6 +18,7 @@ public class TestArrayList {
 
 		ArrayList<String> al = new ArrayList<>();
 		
+		
 		for (String str:args) {
 			al.add(str);
 		}
