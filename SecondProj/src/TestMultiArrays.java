@@ -30,6 +30,13 @@ public class TestMultiArrays {
 			}
 		}
 		
+		// forEach multi array
+		for (String [] courses:course_subjects) {
+			for (String subject:courses) {
+				System.out.println("Course and Subject of "+ subject);
+			}
+		}
+		
 //	    Arrays.sort(salaries);
 //		System.out.println(Arrays.binarySearch(salaries, 100));
 //		for(int x=0; x< salaries.length; x++) {
