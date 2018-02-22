@@ -13,7 +13,7 @@ public class JDBC_Select_Records {
    public static void main(String[] args) {
    Connection conn = null;
    Statement stmt = null;
-   try{
+   try {
       //STEP 2: Register JDBC driver
       Class.forName("com.mysql.jdbc.Driver");
 

@@ -25,7 +25,7 @@ public class JDBC_Delete_Records {
       //STEP 4: Execute a query
       System.out.println("Creating statement...");
       stmt = conn.createStatement();
-      String sql = "DELETE FROM Registration " +
+      String sql = "DELETE FROM " +
                    "WHERE id = 101";
       stmt.executeUpdate(sql);
 
