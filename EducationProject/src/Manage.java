@@ -309,13 +309,296 @@ public class Manage {
 			     }//end try
 			    } // end class if
 			} else if (choice.equalsIgnoreCase("3") || choice.equalsIgnoreCase("Update") ) {
+				
+				System.out.println("--------------------------------------- ");
+				System.out.println("Eg:- UPDATE (tableName) SET (Field To Change) = (Value set to change) WHERE id in (Set id) ");
 				System.out.println("--------------------------------------- ");
 				System.out.println(" Update the table value ");
+				System.out.print(" Pick the table that you want to update(tableName) :  ");
+				tableName = cin.nextLine();
+				
+				if(tableName.equalsIgnoreCase("student")) {
+					
+					String field = null;
+					String value = null;
+					int id;
+					System.out.println("--------------------------------------- ");
+					System.out.print(" Pick the student's ID that you wished to Alter(Set id) :  ");
+					id = nic.nextInt();
+					System.out.print(" Pick the field that you want to change(Field to Change) :  ");
+					field = cin.nextLine();
+					System.out.print(" Alter with value(Value set to change) :  ");
+					value = cin.nextLine();
+					
+					try{
+					      //STEP 2: Register JDBC driver
+					      Class.forName("com.mysql.jdbc.Driver");
+
+					      //STEP 3: Open a connection
+					      System.out.println("Connecting to a selected database...");
+					      conn = DriverManager.getConnection(DB_URL, USER, PASS);
+					      System.out.println("Connected database successfully...");
+					      
+					      //STEP 4: Execute a query
+					      System.out.println("Creating statement...");
+					      stmt = conn.createStatement();
+					      String sql = "UPDATE " + tableName +
+					                   " SET "+ field + " = '" + value +"' WHERE StudentId in ("+id+")";
+					
+					      stmt.executeUpdate(sql);
+
+					   }catch(SQLException se){
+					      //Handle errors for JDBC
+					      se.printStackTrace();
+					   }catch(Exception e){
+					      //Handle errors for Class.forName
+					      e.printStackTrace();
+					   }finally{
+					      //finally block used to close resources
+					      try{
+					         if(stmt!=null)
+					            conn.close();
+					      }catch(SQLException se){
+					      }// do nothing
+					      try{
+					         if(conn!=null)
+					            conn.close();
+					      }catch(SQLException se){
+					         se.printStackTrace();
+					      }//end finally try
+					   }//end try
+				} else if(tableName.equalsIgnoreCase("class")) {
+					//String field = null;
+					String value = null;
+					int id;
+					System.out.println("--------------------------------------- ");
+					System.out.print(" Pick the Class's ID that you wished to Alter(Set id) :  ");
+					id = nic.nextInt();
+//					System.out.print(" Pick the field that you want to change(Field to Change) :  ");
+//					field = cin.nextLine();
+					System.out.print(" Alter with value(Value set to change) :  ");
+					value = cin.nextLine();
+					
+					try{
+					      //STEP 2: Register JDBC driver
+					      Class.forName("com.mysql.jdbc.Driver");
+
+					      //STEP 3: Open a connection
+					      System.out.println("Connecting to a selected database...");
+					      conn = DriverManager.getConnection(DB_URL, USER, PASS);
+					      System.out.println("Connected database successfully...");
+					      
+					      //STEP 4: Execute a query
+					      System.out.println("Creating statement...");
+					      stmt = conn.createStatement();
+					      String sql = "UPDATE " + tableName +
+					                   " SET classCourse = '" + value +"' WHERE 	ClassId in ("+id+")";
+					
+					      stmt.executeUpdate(sql);
+
+					   }catch(SQLException se){
+					      //Handle errors for JDBC
+					      se.printStackTrace();
+					   }catch(Exception e){
+					      //Handle errors for Class.forName
+					      e.printStackTrace();
+					   }finally{
+					      //finally block used to close resources
+					      try{
+					         if(stmt!=null)
+					            conn.close();
+					      }catch(SQLException se){
+					      }// do nothing
+					      try{
+					         if(conn!=null)
+					            conn.close();
+					      }catch(SQLException se){
+					         se.printStackTrace();
+					      }//end finally try
+					   }//end try
+					
+				} else if(tableName.equalsIgnoreCase("mark")) {
+					//String field = null;
+					String value = null;
+					int id;
+					System.out.println("--------------------------------------- ");
+					System.out.print(" Pick the Student's ID that you wished to Alter(Set id) :  ");
+					id = nic.nextInt();
+//					System.out.print(" Pick the field that you want to change(Field to Change) :  ");
+//					field = cin.nextLine();
+					System.out.print(" Update the mark(Value set to change) :  ");
+					value = cin.nextLine();
+					
+					try{
+					      //STEP 2: Register JDBC driver
+					      Class.forName("com.mysql.jdbc.Driver");
+
+					      //STEP 3: Open a connection
+					      System.out.println("Connecting to a selected database...");
+					      conn = DriverManager.getConnection(DB_URL, USER, PASS);
+					      System.out.println("Connected database successfully...");
+					      
+					      //STEP 4: Execute a query
+					      System.out.println("Creating statement...");
+					      stmt = conn.createStatement();
+					      String sql = "UPDATE " + tableName +
+					                   " SET mark = '" + value +"' WHERE StudentId in ("+id+")";
+					
+					      stmt.executeUpdate(sql);
+
+					   }catch(SQLException se){
+					      //Handle errors for JDBC
+					      se.printStackTrace();
+					   }catch(Exception e){
+					      //Handle errors for Class.forName
+					      e.printStackTrace();
+					   }finally{
+					      //finally block used to close resources
+					      try{
+					         if(stmt!=null)
+					            conn.close();
+					      }catch(SQLException se){
+					      }// do nothing
+					      try{
+					         if(conn!=null)
+					            conn.close();
+					      }catch(SQLException se){
+					         se.printStackTrace();
+					      }//end finally try
+					   }//end try
+					
+				} else {
+					System.out.println("||||||||||||||||||||||||||||||||||||||||||||||");
+					System.out.println("Table did not exist. Table may exist - (Student/Class/Mark)");
+					System.out.println("||||||||||||||||||||||||||||||||||||||||||||||");
+				}
+				
 				option=1;
 			
 			} else if (choice.equalsIgnoreCase("4") || choice.equalsIgnoreCase("Delete") ) {
+				
+				int id;
+				
 				System.out.println("--------------------------------------- ");
 				System.out.println(" Delete the table value ");
+				System.out.print(" Select table that you want to delete from : ");
+				tableName = cin.nextLine();
+				System.out.print(" Select the ID that you want to delete : ");
+				id = nic.nextInt();
+				
+				if (tableName.equalsIgnoreCase("student")) {
+					try{
+					      //STEP 2: Register JDBC driver
+					      Class.forName("com.mysql.jdbc.Driver");
+
+					      //STEP 3: Open a connection
+					      System.out.println("Connecting to a selected database...");
+					      conn = DriverManager.getConnection(DB_URL, USER, PASS);
+					      System.out.println("Connected database successfully...");
+					      
+					      //STEP 4: Execute a query
+					      System.out.println("Creating statement...");
+					      stmt = conn.createStatement();
+					      String sql = "DELETE FROM " + tableName +
+					                   " WHERE StudentId = "+ id;
+					      stmt.executeUpdate(sql);
+					      
+					   }catch(SQLException se){
+					      //Handle errors for JDBC
+					      se.printStackTrace();
+					   }catch(Exception e){
+					      //Handle errors for Class.forName
+					      e.printStackTrace();
+					   }finally{
+					      //finally block used to close resources
+					      try{
+					         if(stmt!=null)
+					            conn.close();
+					      }catch(SQLException se){
+					      }// do nothing
+					      try{
+					         if(conn!=null)
+					            conn.close();
+					      }catch(SQLException se){
+					         se.printStackTrace();
+					      }//end finally try
+					   }//end try
+				} else if (tableName.equalsIgnoreCase("class")) {
+					try{
+					      //STEP 2: Register JDBC driver
+					      Class.forName("com.mysql.jdbc.Driver");
+
+					      //STEP 3: Open a connection
+					      System.out.println("Connecting to a selected database...");
+					      conn = DriverManager.getConnection(DB_URL, USER, PASS);
+					      System.out.println("Connected database successfully...");
+					      
+					      //STEP 4: Execute a query
+					      System.out.println("Creating statement...");
+					      stmt = conn.createStatement();
+					      String sql = "DELETE FROM " + tableName +
+					                   " WHERE ClassId = "+ id;
+					      stmt.executeUpdate(sql);
+					      
+					   }catch(SQLException se){
+					      //Handle errors for JDBC
+					      se.printStackTrace();
+					   }catch(Exception e){
+					      //Handle errors for Class.forName
+					      e.printStackTrace();
+					   }finally{
+					      //finally block used to close resources
+					      try{
+					         if(stmt!=null)
+					            conn.close();
+					      }catch(SQLException se){
+					      }// do nothing
+					      try{
+					         if(conn!=null)
+					            conn.close();
+					      }catch(SQLException se){
+					         se.printStackTrace();
+					      }//end finally try
+					   }//end try
+				} else if (tableName.equalsIgnoreCase("mark")) {
+					try{
+					      //STEP 2: Register JDBC driver
+					      Class.forName("com.mysql.jdbc.Driver");
+
+					      //STEP 3: Open a connection
+					      System.out.println("Connecting to a selected database...");
+					      conn = DriverManager.getConnection(DB_URL, USER, PASS);
+					      System.out.println("Connected database successfully...");
+					      
+					      //STEP 4: Execute a query
+					      System.out.println("Creating statement...");
+					      stmt = conn.createStatement();
+					      String sql = "DELETE FROM " + tableName +
+					                   " WHERE StudentId = "+ id;
+					      stmt.executeUpdate(sql);
+					      
+					   }catch(SQLException se){
+					      //Handle errors for JDBC
+					      se.printStackTrace();
+					   }catch(Exception e){
+					      //Handle errors for Class.forName
+					      e.printStackTrace();
+					   }finally{
+					      //finally block used to close resources
+					      try{
+					         if(stmt!=null)
+					            conn.close();
+					      }catch(SQLException se){
+					      }// do nothing
+					      try{
+					         if(conn!=null)
+					            conn.close();
+					      }catch(SQLException se){
+					         se.printStackTrace();
+					      }//end finally try
+					   }//end try
+				}
+				
 				option=1;
 			
 			}else if (choice.equalsIgnoreCase("h") || choice.equalsIgnoreCase("help") ) {
